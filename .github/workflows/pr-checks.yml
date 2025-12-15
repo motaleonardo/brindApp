@@ -1,0 +1,43 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  pr-validation:
+    name: PR Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check branch naming
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|hotfix|bugfix|chore|docs)/ ]]; then
+            echo "❌ Branch name must start with: feature/, hotfix/, bugfix/, chore/, or docs/"
+            echo "   Current branch: $BRANCH_NAME"
+            exit 1
+          fi
+          echo "✅ Branch naming convention OK: $BRANCH_NAME"
+
+      - name: Check PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          # Conventional commits pattern
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|test|chore|perf|ci)(\(.+\))?:\ .+ ]]; then
+            echo "❌ PR title must follow conventional commits format"
+            echo "   Examples: 'feat: add login', 'fix(auth): resolve token issue'"
+            echo "   Current title: $PR_TITLE"
+            exit 1
+          fi
+          echo "✅ PR title format OK: $PR_TITLE"
+
+      - name: Check for direct commits to main
+        if: github.base_ref == 'main'
+        run: |
+          echo "⚠️  PRs to main detected. Ensure this is going through proper review."

@@ -1,15 +1,32 @@
-# 📋 TO-DO List - Aplicativo de Delivery de Bebidas Geladas
+# 📋 TO-DO List - Brind
 
-> **Projeto**: Delivery de Bebidas Geladas  
-> **Última Atualização**: 2024-12  
+> **Projeto**: Brind - Delivery de Bebidas Geladas  
+> **Última Atualização**: 2025-12-14  
 > **Status Geral**: Em Planejamento
+
+---
+
+## 🧬 Princípios de Desenvolvimento
+
+> Este projeto segue **boas práticas de código limpo** e **arquitetura preparada para expansões futuras**.
+
+| Princípio                  | Descrição                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Clean Code**             | Código legível, modular e bem documentado                                                            |
+| **SOLID**                  | Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion |
+| **DRY**                    | Don't Repeat Yourself - código reutilizável                                                          |
+| **Separation of Concerns** | Backend API, Mobile, Admin separados e independentes                                                 |
+| **Feature Flags**          | Preparado para ativar/desativar funcionalidades sem deploy                                           |
+| **API Versioning**         | Endpoints versionados (v1, v2) para compatibilidade                                                  |
+| **Modular Architecture**   | Componentes desacoplados para fácil manutenção e expansão                                            |
+| **Comprehensive Testing**  | Testes unitários, integração e E2E                                                                   |
 
 ---
 
 ## Legenda
 
 - **Status**: `⬜ Pendente` | `🔄 Em Progresso` | `✅ Concluído` | `🚫 Bloqueado`
-- **Prioridade**: `🔴 MUST (Crítico)` | `🟡 SHOULD (Importante)` | `🟢 COULD (Desejável)`
+- **Prioridade**: `🔴 MUST (Crítico)` | `🟡 SHOULD (Importante)` | `🟢 COULD (Desejável)` | `🔮 FUTURE (Roadmap)`
 
 ---
 
@@ -30,23 +47,46 @@
 
 ### 1. Infraestrutura e Backend (Semanas 1-2)
 
-| Task ID | Descrição                            | Status      | Prioridade | Notas                                                    |
-| ------- | ------------------------------------ | ----------- | ---------- | -------------------------------------------------------- |
-| INF-001 | Setup do servidor Hostinger KVM2     | ⬜ Pendente | 🔴 MUST    | PostgreSQL + Redis + S3/MinIO hosting                    |
-| INF-002 | Configurar banco de dados PostgreSQL | ⬜ Pendente | 🔴 MUST    | Modelagem: Users, Products, Orders, Payments, Deliveries |
-| INF-003 | Configurar Redis para cache e jobs   | ⬜ Pendente | 🔴 MUST    | Otimização de performance (NFR010)                       |
-| INF-004 | Setup do backend Python FastAPI      | ⬜ Pendente | 🔴 MUST    | Tech stack: Python FastAPI                               |
-| INF-005 | Configurar CI/CD com Git             | ⬜ Pendente | 🔴 MUST    | Scripts de deploy automatizado                           |
-| INF-006 | Implementar criptografia TLS 1.3     | ⬜ Pendente | 🔴 MUST    | NFR005 - Segurança obrigatória                           |
-| INF-007 | Configurar logs de auditoria         | ⬜ Pendente | 🔴 MUST    | NFR008 - Logs de pagamento e auditoria completos         |
-| INF-008 | Configurar Sentry para erros         | ⬜ Pendente | 🔴 MUST    | Backend + Mobile - Observabilidade                       |
-| INF-009 | Setup Grafana dashboards             | ⬜ Pendente | 🔴 MUST    | API + pagamentos + entregas                              |
-| INF-010 | Configurar alertas (Slack/Email)     | ⬜ Pendente | 🔴 MUST    | Alertas acionáveis para incidentes                       |
-| INF-011 | Healthcheck /health e /ready         | ⬜ Pendente | 🔴 MUST    | Endpoints de monitoramento                               |
+| Task ID | Descrição                            | Status          | Prioridade | Notas                                                                         |
+| ------- | ------------------------------------ | --------------- | ---------- | ----------------------------------------------------------------------------- |
+| INF-001 | Setup do servidor Hostinger KVM2     | ⬜ Pendente     | 🔴 MUST    | PostgreSQL + Redis + S3/MinIO hosting                                         |
+| INF-002 | Configurar banco de dados PostgreSQL | ⬜ Pendente     | 🔴 MUST    | Modelagem: Users, Products, Orders, Payments, Deliveries                      |
+| INF-003 | Configurar Redis para cache e jobs   | ⬜ Pendente     | 🔴 MUST    | Otimização de performance (NFR010)                                            |
+| INF-004 | Setup do backend Python FastAPI      | ⬜ Pendente     | 🔴 MUST    | Tech stack: Python FastAPI                                                    |
+| INF-005 | Configurar CI/CD com GitHub Actions  | 🔄 Em Progresso | 🔴 MUST    | ✅ Workflows criados: backend-ci, backend-cd, mobile-ci, mobile-cd, pr-checks |
+| INF-006 | Configurar GitHub Secrets            | ⬜ Pendente     | 🔴 MUST    | PROD_SERVER_HOST, PROD_SERVER_USER, SSH_KEY, EXPO_TOKEN                       |
+| INF-007 | Implementar criptografia TLS 1.3     | ⬜ Pendente     | 🔴 MUST    | NFR005 - Segurança obrigatória                                                |
+| INF-008 | Configurar logs de auditoria         | ⬜ Pendente     | 🔴 MUST    | NFR008 - Logs de pagamento e auditoria completos                              |
+| INF-009 | Configurar Sentry para erros         | ⬜ Pendente     | 🔴 MUST    | Backend + Mobile - Observabilidade                                            |
+| INF-010 | Setup Grafana dashboards             | ⬜ Pendente     | 🔴 MUST    | API + pagamentos + entregas                                                   |
+| INF-011 | Configurar alertas (Slack/Email)     | ⬜ Pendente     | 🔴 MUST    | Alertas acionáveis para incidentes                                            |
+| INF-012 | Healthcheck /health e /ready         | ⬜ Pendente     | 🔴 MUST    | Endpoints de monitoramento                                                    |
 
 ---
 
-### 1.1 UX & Design de Produto
+### 1.1 Analytics & KPIs (PostHog)
+
+| Task ID | Descrição                                        | Status      | Prioridade | Notas                                             |
+| ------- | ------------------------------------------------ | ----------- | ---------- | ------------------------------------------------- |
+| ANL-001 | Setup PostHog projeto                            | ⬜ Pendente | 🔴 MUST    | Criar projeto, obter API key                      |
+| ANL-002 | Integrar posthog-react-native no app mobile      | ⬜ Pendente | 🔴 MUST    | SDK com PostHogProvider, autocapture habilitado   |
+| ANL-003 | Integrar PostHog no backend (Python)             | ⬜ Pendente | 🔴 MUST    | Server-side tracking para eventos críticos        |
+| ANL-004 | Configurar eventos de Aquisição                  | ⬜ Pendente | 🔴 MUST    | app_installed, signup_started, signup_completed   |
+| ANL-005 | Configurar eventos de Engajamento                | ⬜ Pendente | 🔴 MUST    | session_start, category_viewed, product_viewed    |
+| ANL-006 | Configurar eventos de Conversão                  | ⬜ Pendente | 🔴 MUST    | add_to_cart, checkout_started, purchase_completed |
+| ANL-007 | Configurar eventos de Entrega                    | ⬜ Pendente | 🔴 MUST    | delivery_accepted, delivery_picked_up, delivered  |
+| ANL-008 | Criar Funnel: Cadastro → Primeiro Pedido         | ⬜ Pendente | 🔴 MUST    | Medir conversão do onboarding                     |
+| ANL-009 | Criar Funnel: Carrinho → Pagamento → Confirmação | ⬜ Pendente | 🔴 MUST    | Medir abandono de carrinho                        |
+| ANL-010 | Criar Dashboard de KPIs principais               | ⬜ Pendente | 🔴 MUST    | DAU, WAU, MAU, conversão, NPS                     |
+| ANL-011 | Configurar Retention Cohorts                     | ⬜ Pendente | 🔴 MUST    | Retenção D1, D7, D30                              |
+| ANL-012 | Configurar alertas de métricas                   | ⬜ Pendente | 🟡 SHOULD  | Alertas para quedas de conversão ou erros         |
+| ANL-013 | Habilitar Session Replay (mobile)                | ⬜ Pendente | 🟡 SHOULD  | Replay de sessões para debug de UX                |
+| ANL-014 | Configurar Feature Flags no PostHog              | ⬜ Pendente | 🟡 SHOULD  | Rollout gradual de features                       |
+| ANL-015 | Setup A/B Testing framework                      | ⬜ Pendente | 🟡 SHOULD  | Experimentos de UI/UX                             |
+
+---
+
+### 1.2 UX & Design de Produto
 
 | Task ID | Descrição                                 | Status      | Prioridade | Notas                          |
 | ------- | ----------------------------------------- | ----------- | ---------- | ------------------------------ |
@@ -229,44 +269,112 @@
 
 ---
 
-## 📈 Métricas a Monitorar
+## 📈 Métricas a Monitorar (PostHog Dashboards)
 
-| Métrica ID | Descrição                          | Meta      | Status       | Notas                 |
-| ---------- | ---------------------------------- | --------- | ------------ | --------------------- |
-| MET-001    | Uptime da plataforma               | 99%       | ⬜ Monitorar | NFR001                |
-| MET-002    | Tempo de carregamento das telas    | < 2s      | ⬜ Monitorar | NFR002                |
-| MET-003    | Tempo médio de entrega             | 20-35 min | ⬜ Monitorar | NFR003                |
-| MET-004    | Taxa de sucesso de pagamentos      | > 95%     | ⬜ Monitorar | -                     |
-| MET-005    | Pedidos semanais                   | 100-300   | ⬜ Monitorar | Meta após 2-4 meses   |
-| MET-006    | NPS                                | > 50      | ⬜ Monitorar | Satisfação do cliente |
-| MET-007    | Taxa de conversão cadastro->pedido | > 30%     | ⬜ Monitorar | -                     |
-| MET-008    | Taxa de abandono do carrinho       | < 40%     | ⬜ Monitorar | -                     |
+| Métrica ID | Descrição                         | Meta      | Ferramenta | Notas                     |
+| ---------- | --------------------------------- | --------- | ---------- | ------------------------- |
+| MET-001    | Uptime da plataforma              | 99%       | Grafana    | NFR001                    |
+| MET-002    | Tempo de carregamento das telas   | < 2s      | PostHog    | NFR002                    |
+| MET-003    | Tempo médio de entrega            | 20-35 min | PostHog    | NFR003                    |
+| MET-004    | Taxa de sucesso de pagamentos     | > 95%     | PostHog    | Funnel checkout           |
+| MET-005    | Pedidos semanais                  | 100-300   | PostHog    | Meta após 2-4 meses       |
+| MET-006    | NPS                               | > 50      | PostHog    | Survey in-app             |
+| MET-007    | Taxa de conversão cadastro→pedido | > 30%     | PostHog    | Funnel onboarding         |
+| MET-008    | Taxa de abandono do carrinho      | < 40%     | PostHog    | Funnel carrinho→pagamento |
+| MET-009    | DAU / WAU / MAU                   | -         | PostHog    | Usuários ativos           |
+| MET-010    | Retenção D1 / D7 / D30            | > 40% D7  | PostHog    | Cohort analysis           |
+| MET-011    | LTV (Lifetime Value)              | -         | PostHog    | Revenue tracking          |
+| MET-012    | CAC (Custo Aquisição Cliente)     | -         | PostHog    | Attribution + Marketing   |
+
+---
+
+## 🔮 FASE 4 - Roadmap de AI (Futuro)
+
+> Tarefas preparatórias para integração de Inteligência Artificial. Arquitetura modular permite expansão sem refatoração.
+
+### 14. Preparação de Infraestrutura para AI
+
+| Task ID | Descrição                                | Status      | Prioridade | Notas                                        |
+| ------- | ---------------------------------------- | ----------- | ---------- | -------------------------------------------- |
+| AI-001  | Estruturar dados para ML (feature store) | ⬜ Pendente | 🔮 FUTURE  | Histórico de pedidos, preferências, contexto |
+| AI-002  | Pipeline de dados para treinamento       | ⬜ Pendente | 🔮 FUTURE  | ETL para PostgreSQL → Data Warehouse         |
+| AI-003  | Endpoint para modelo de recomendação     | ⬜ Pendente | 🔮 FUTURE  | GET /api/v1/recommendations                  |
+| AI-004  | Integrar API de LLM (OpenAI/Claude)      | ⬜ Pendente | 🔮 FUTURE  | Para chatbot e assistente                    |
+
+---
+
+### 15. Recomendações Inteligentes
+
+| Task ID | Descrição                            | Status      | Prioridade | Notas                                         |
+| ------- | ------------------------------------ | ----------- | ---------- | --------------------------------------------- |
+| AI-005  | Modelo de recomendação por histórico | ⬜ Pendente | 🔮 FUTURE  | "Clientes que compraram X também compraram Y" |
+| AI-006  | Recomendação por contexto (Momento)  | ⬜ Pendente | 🔮 FUTURE  | Sugestões baseadas no Momento selecionado     |
+| AI-007  | Recomendação por horário/clima       | ⬜ Pendente | 🔮 FUTURE  | Cervejas em dias quentes, vinhos à noite      |
+| AI-008  | Combo builder inteligente            | ⬜ Pendente | 🔮 FUTURE  | Sugerir combos otimizados por preferência     |
+
+---
+
+### 16. Otimização de Logística com AI
+
+| Task ID | Descrição                                  | Status      | Prioridade | Notas                                   |
+| ------- | ------------------------------------------ | ----------- | ---------- | --------------------------------------- |
+| AI-009  | Previsão de demanda por região/horário     | ⬜ Pendente | 🔮 FUTURE  | Otimizar estoque e entregadores         |
+| AI-010  | Otimização de rotas com ML                 | ⬜ Pendente | 🔮 FUTURE  | Agrupar entregas, reduzir tempo         |
+| AI-011  | Alocação inteligente de entregadores       | ⬜ Pendente | 🔮 FUTURE  | Match entregador-pedido por proximidade |
+| AI-012  | ETA prediction (tempo estimado de entrega) | ⬜ Pendente | 🔮 FUTURE  | Previsão mais precisa para o cliente    |
+
+---
+
+### 17. Experiência do Cliente com AI
+
+| Task ID | Descrição                             | Status      | Prioridade | Notas                                        |
+| ------- | ------------------------------------- | ----------- | ---------- | -------------------------------------------- |
+| AI-013  | Chatbot de atendimento (FAQ + status) | ⬜ Pendente | 🔮 FUTURE  | Responder dúvidas, informar status do pedido |
+| AI-014  | Análise de sentimento de avaliações   | ⬜ Pendente | 🔮 FUTURE  | Identificar problemas automaticamente        |
+| AI-015  | Personalização de home por usuário    | ⬜ Pendente | 🔮 FUTURE  | Layout e produtos personalizados             |
+| AI-016  | Push notifications inteligentes       | ⬜ Pendente | 🔮 FUTURE  | Timing e conteúdo otimizados por ML          |
+
+---
+
+### 18. Analytics Avançados com AI
+
+| Task ID | Descrição                       | Status      | Prioridade | Notas                                     |
+| ------- | ------------------------------- | ----------- | ---------- | ----------------------------------------- |
+| AI-017  | Churn prediction                | ⬜ Pendente | 🔮 FUTURE  | Identificar clientes em risco de abandono |
+| AI-018  | LTV prediction por cohort       | ⬜ Pendente | 🔮 FUTURE  | Prever valor vitalício do cliente         |
+| AI-019  | Anomaly detection em transações | ⬜ Pendente | 🔮 FUTURE  | Fraude e comportamentos atípicos          |
+| AI-020  | Auto-insights dashboard         | ⬜ Pendente | 🔮 FUTURE  | AI identifica tendências automaticamente  |
 
 ---
 
 ## 📝 Resumo por Prioridade
 
-| Prioridade | Total  | Pendente | Em Progresso | Concluído |
-| ---------- | ------ | -------- | ------------ | --------- |
-| 🔴 MUST    | 95     | 95       | 0            | 0         |
-| 🟡 SHOULD  | 4      | 4        | 0            | 0         |
-| 🟢 COULD   | 0      | 0        | 0            | 0         |
-| **TOTAL**  | **99** | **99**   | **0**        | **0**     |
+| Prioridade | Total   | Pendente | Em Progresso | Concluído |
+| ---------- | ------- | -------- | ------------ | --------- |
+| 🔴 MUST    | 96      | 95       | 1            | 0         |
+| 🟡 SHOULD  | 8       | 8        | 0            | 0         |
+| 🟢 COULD   | 0       | 0        | 0            | 0         |
+| 🔮 FUTURE  | 20      | 20       | 0            | 0         |
+| **TOTAL**  | **124** | **123**  | **1**        | **0**     |
 
 ---
 
 ## 🔧 Stack Técnica
 
-| Componente  | Tecnologia                       |
-| ----------- | -------------------------------- |
-| Mobile Apps | React Native + Expo (TypeScript) |
-| Admin Web   | Next.js (React + TypeScript)     |
-| Backend     | Python FastAPI                   |
-| Database    | PostgreSQL                       |
-| Cache/Jobs  | Redis                            |
-| Storage     | Hostinger KVM2 (S3/MinIO)        |
-| Payments    | Stripe / Pagar.me / Gerencianet  |
-| Deploy      | Hostinger KVM2, Git CI           |
+| Componente    | Tecnologia                        |
+| ------------- | --------------------------------- |
+| Mobile Apps   | React Native + Expo (TypeScript)  |
+| Admin Web     | Next.js (React + TypeScript)      |
+| Backend       | Python FastAPI                    |
+| Database      | PostgreSQL                        |
+| Cache/Jobs    | Redis                             |
+| Storage       | Hostinger KVM2 (S3/MinIO)         |
+| Payments      | Stripe / Pagar.me / Gerencianet   |
+| Analytics     | **PostHog** (product analytics)   |
+| Monitoring    | Sentry (errors) + Grafana (infra) |
+| Feature Flags | PostHog Feature Flags             |
+| CI/CD         | GitHub Actions                    |
+| Deploy        | Hostinger KVM2, Docker            |
 
 ---
 
